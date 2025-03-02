@@ -44,6 +44,16 @@ namespace Gameplay
 			board_controller->render();
 		}
 
+		BoardState BoardService::getBoardState()
+		{
+			return board_controller->getBoardState();
+		}
+
+		void BoardService::setBoardState(BoardState state)
+		{
+			board_controller->setBoardState(state);
+		}
+
 		void BoardService::resetBoard()
 		{
 			board_controller->reset();

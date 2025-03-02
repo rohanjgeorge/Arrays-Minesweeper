@@ -5,30 +5,50 @@
 
 namespace Gameplay {
 
-    namespace Board
-    {
-        class BoardController
-        {
-        public:
+	namespace Board
+	{
 
-            static const int number_of_rows = 9;
-            static const int number_of_columns = 9;
-            static const int mines_count = 8;
+		class BoardView;
 
-            BoardController();
-            ~BoardController();
+		enum class BoardState
+		{
+			FIRST_CELL,     // The state when the player opens first cell.
+			PLAYING,        // The game is in progress.
+			COMPLETED,      // The game is over.
+		};
 
-            void initialize();
-            void update();
-            void render();
-            void reset();
+		class BoardController
+		{
+		public:
 
-        private:
-            BoardView* board_view;
+			static const int number_of_rows = 9;
+			static const int number_of_columns = 9;
+			static const int mines_count = 8;
 
-            void createBoard();
-            void destroy();
-            void deleteBoard();
-        };
-    }
+			BoardController();
+			~BoardController();
+
+			void initialize();
+			void update();
+			void render();
+			void reset();
+
+			BoardState getBoardState();
+			void setBoardState(BoardState state);
+
+		private:
+			BoardView* board_view;
+			Cell::CellController* board[number_of_rows][number_of_columns];
+
+
+
+			BoardState board_state;
+
+			void createBoard();
+			void initializeCells();
+			void destroy();
+			void resetBoard();
+			void deleteBoard();
+		};
+	}
 }

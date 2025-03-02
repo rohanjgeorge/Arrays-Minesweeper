@@ -19,6 +19,8 @@ namespace Gameplay
             void update();
             void render();
 
+            BoardState getBoardState();
+            void setBoardState(BoardState state);
             void resetBoard();
         };
     }
