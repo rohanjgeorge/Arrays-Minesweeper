@@ -1,6 +1,6 @@
 #include "../../header/Gameplay/GameplayController.h"
 #include "../../header/Gameplay/Board/BoardService.h"
-//#include "../../header/Time/TimeService.h"
+#include "../../header/Time/TimeService.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Main/GameService.h"
 
@@ -9,9 +9,9 @@ namespace Gameplay
     using namespace Main;
     using namespace Board;
     using namespace Global;
-  //  using namespace Cell;
+  using namespace Cell;
     using namespace UI::UIElement;
-    //using namespace Time;
+    using namespace Time;
 
     GameplayController::~GameplayController() { board_service = nullptr; }
 
@@ -34,7 +34,7 @@ namespace Gameplay
     {
         if (game_result == GameResult::WON)
             return;
-        //remaining_time -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+        remaining_time -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
     }
 
     bool GameplayController::isTimeOver() { return (remaining_time <= 1); }
@@ -46,8 +46,7 @@ namespace Gameplay
         remaining_time = max_level_duration;
     }
 
-    int GameplayController::getMinesCount() { return 0; 
-    //board_service->getMinesCount(); 
+    int GameplayController::getMinesCount() { return board_service->getMinesCount(); 
     }
 
     float GameplayController::getRemainingTime() { return remaining_time; }
@@ -70,9 +69,9 @@ namespace Gameplay
     void GameplayController::gameWon()
     {
         game_result = GameResult::WON;
-        //board_service->flagAllMines();
-        //board_service->setBoardState(BoardState::COMPLETED);
-        //ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::GAME_WON);
+        board_service->flagAllMines();
+        board_service->setBoardState(BoardState::COMPLETED);
+        ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::GAME_WON);
     }
 
     void GameplayController::gameLost()
@@ -81,8 +80,8 @@ namespace Gameplay
         {
             game_result = GameResult::LOST;
             beginGameOverTimer();
-            //board_service->showBoard();
-            //board_service->setBoardState(BoardState::COMPLETED);
+            board_service->showBoard();
+            board_service->setBoardState(BoardState::COMPLETED);
         }
         else
         {

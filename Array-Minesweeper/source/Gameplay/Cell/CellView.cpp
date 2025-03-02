@@ -82,12 +82,12 @@ namespace Gameplay
 
         void CellView::registerButtonCallback()
         {
-            //cell_button->registerCallbackFuntion(std::bind(&CellView::cellButtonCallback, this, std::placeholders::_1));
+            cell_button->registerCallbackFuntion(std::bind(&CellView::cellButtonCallback, this, std::placeholders::_1));
         }
 
         void CellView::cellButtonCallback(ButtonType button_type)
         {
-            //ServiceLocator::getInstance()->getBoardService()->processCellInput(cell_controller, button_type);
+            ServiceLocator::getInstance()->getBoardService()->processCellInput(cell_controller, button_type);
         }
     }
 }

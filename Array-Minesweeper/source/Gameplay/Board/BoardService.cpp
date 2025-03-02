@@ -1,10 +1,15 @@
 #include "../../header/Gameplay/Board/BoardService.h"
+#include "../../header/UI/UIElement/ButtonView.h"
 #include <iostream>
 
 namespace Gameplay
 {
 	namespace Board
 	{
+
+		using namespace Cell;
+		using namespace UI;
+		using namespace UI::UIElement;
 
 		BoardService::BoardService()
 		{
@@ -44,6 +49,11 @@ namespace Gameplay
 			board_controller->render();
 		}
 
+		void BoardService::processCellInput(CellController* cell_controller, ButtonType button_type)
+		{
+			board_controller->processCellInput(cell_controller, button_type);
+		}
+
 		BoardState BoardService::getBoardState()
 		{
 			return board_controller->getBoardState();
@@ -58,6 +68,15 @@ namespace Gameplay
 		{
 			board_controller->reset();
 		}
+
+		int BoardService::getMinesCount()
+		{
+			return board_controller->getMinesCount();
+		}
+
+		void BoardService::flagAllMines() { board_controller->flagAllMines(); }
+
+		void BoardService::showBoard() { board_controller->showBoard(); }
 
 		void BoardService::destroy()
 		{

@@ -4,6 +4,7 @@
 #include "../../header/UI/Credits/CreditsScreenUIController.h"
 #include "../../header/UI/Instructions/InstructionsScreenUIController.h"
 #include "../../header/UI/Interface/IUIController.h"
+#include "../../header/UI/Gameplay/GameplayUIController.h"
 
 namespace UI
 {
@@ -13,6 +14,7 @@ namespace UI
 		SplashScreen::SplashScreenUIController* splash_screen_controller;
 		MainMenu::MainMenuUIController* main_menu_controller;
 		Credits::CreditsScreenUIController* credit_screen_controller;
+		GameplayUI::GameplayUIController* gameplay_ui_controller;
 		Instructions::InstructionsScreenUIController* instructions_screen_controller;
 
 		void createControllers();
